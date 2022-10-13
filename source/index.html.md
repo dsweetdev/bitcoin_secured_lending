@@ -56,10 +56,10 @@ code_clipboard: true
 ---
 
 # _About the Developer_
-<img src="images/three_hats.png" alt="three_hats" style="float:right;margin:0px;padding-left:40px;padding-right:56px;"/>
-Hi! I'm a technical solutions professional with over 16 years of software engineering experience, specializing in developer platforms, APIs & SDKs, and cloud services. In a sales engineering capacity, I love building relationships with partners and understanding their business needs deeply. In advocacy of the developer, I partner with internal product engineering teams to drive new features and to release incredible new products to market. My ultimate goal is to bring delight to the end users, all while building an ever more efficient, secure, and profitable API product platform.
+<img src="images/three_hats.png" alt="three_hats" style="float:right;margin:0px;padding-left:40px"/>
+Hi! I'm a technical solutions professional with over 16 years of software engineering experience, specializing in developer platforms, APIs & SDKs, and cloud services. I love building relationships with partners and understanding their business needs in a sales engineering capacity. In advocacy of the developer, I partner with internal product engineering teams to drive new features and to release incredible new products to market. My ultimate goal is to bring delight to the end users, all while building an ever more efficient, secure, and profitable API product platform.
 
-As a cryptocurrency investor and enthusiast since 2017, I'm passionate about Web3 and the future of democratized digital finance. In my spare time, I enjoy running blockchain nodes and contributing to various projects, such as Trace Labs' recent World Economic Forum-sponsored [Trusted COVID-19 Essential Supplies Repository](https://www.weforum.org/agenda/2021/02/origintrail-blockchain-covid-supplies-repository/).
+As a cryptocurrency investor and enthusiast since 2017, I'm passionate about Web3 and the future of democratized digital finance. I dream of a day when the unbanked worldwide have safe and easy access to digital currency — hence, this project. In my spare time, I enjoy running blockchain nodes and contributing to various projects, such as Trace Labs' recent World Economic Forum-sponsored [Trusted COVID-19 Essential Supplies Repository](https://www.weforum.org/agenda/2021/02/origintrail-blockchain-covid-supplies-repository/).
 
 # _About the Project_
 This API platform proof-of-concept (PoC) enables banking integration partners to offer their end-users the ability to obtain a USD loan against their Bitcoin position. Complete API documentation for the Service Platform is included, along with a dedicated integration guide that presents a mobile app reference implementation. All content is my own, authored in calendar Q2 of 2022.
@@ -90,7 +90,7 @@ The quickest way to get started is to use our <a href="artifacts/postman.json" d
 
 <div class="postman-run-button"
 data-postman-action="collection/import"
-data-postman-collection-url="artifacts/postman.json"></div>
+data-postman-var-1="74fde527aa987b24fab8"></div>
 <script type="text/javascript">
   (function (p,o,s,t,m,a,n) {
     !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
