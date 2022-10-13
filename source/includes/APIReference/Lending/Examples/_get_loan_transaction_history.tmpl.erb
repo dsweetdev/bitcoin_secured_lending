@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/Lending/Examples/_get_loan_transaction_history-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "loans/1/transactions",
+    :parameters => [ ["from", "1645844323"] ],
+    :response_body => @response_body
+  }
+%>
+

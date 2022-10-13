@@ -1,0 +1,36 @@
+## Get a Specific Program
+
+<%= partial "includes/APIReference/Lending/Examples/get_specific_program.tmpl.erb" %>
+
+Return a single lending program, given its unique id.
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https://api.example.com/v1/lending/programs/<ID>`</api>
+<br/>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the program to retrieve
+
+### Response Properties
+
+Property | Description
+--------- | ------- 
+id | Unique identifier of the program
+name | Friendly descriptive identifier of the program
+description | Short informative summary to provide context
+type | Either ‘PERSONAL’ or ‘BUSINESS’. Additional types may be added
+collateralSymbol | The short name (symbol) of the cryptocurrency
+originationFee | The startup cost passed on to the partners’ end customer
+annualFee | The fee passed on to the partners’ end customer, charged yearly
+status | The use readiness state, one of ‘LIVE’, ‘PREVIEW, or ‘CLOSED’
+created | The UTC timestamp of the creation of the loan
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+<code class="level400">404</code> | Not Found

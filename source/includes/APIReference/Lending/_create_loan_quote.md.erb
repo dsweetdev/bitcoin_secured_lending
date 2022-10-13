@@ -1,0 +1,61 @@
+## Create a Loan Quote
+
+<%= partial "includes/APIReference/Lending/Examples/create_loan_quote.tmpl.erb" %>
+
+Returns a quote for a loan, given the amount requested, and the market price of the cryptocurrency. This operation will use the
+properties of the referenced eligibility determination to verify the requested loan amount is within limits, and to calculate the
+required collateral amount.
+
+For example:
+Requested loan amount is <code>$800</code>, offered by the partner at <code>8.5%</code> interest:
+
+Eligibility Property | Value | Within Limits?
+-------- | --------- | ---------
+Min Offer USD | 100 | Yes
+Max Offer USD | 1000 | Yes
+Max APR | 15% | Yes
+MaxInitialLTV | 40% | -
+
+Required collateral: <code>(Loan Amount / MaxInitialLTV) / BTC Market Price</code>
+<code>(800 / 0.4) / 46195 = 0.04329473 BTC</code>
+
+<aside class="warning">To account for the volatility of Bitcoin prices, the quote is valid only for a brief time (60 seconds). Once expired the quote can no longer be used to create a loan (via the Create a Loan endpoint).</aside>
+
+### HTTP Request
+
+<img src="images/post.png" alt="post" class="http_verb"/> <api>`https://api.example.com/v1/lending/quotes`</api>
+<br/>
+
+### Request Properties
+
+Property | Use | Description
+--------- | ------- | -----------
+accountId | required | Id of the customer account for which to create a loan quote.
+eligibilityId | required | Id of the lending program eligibility determination.
+borrowUSD | required | The cash amount requested, in USD.
+
+### Response Properties
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the loan quote
+accountId | Unique id of the customer’s account associated with the loan quote
+eligibilityId | Unique id of the eligibility determination used to generate the quote
+borrowUSD | The requested loan amount, in US dollars
+minCollateral | The minimum amount of cryptocurrency than must be locked as collateral to secure the loan. <em>(Note: this value is derived from the eligibility determination’s MaxInitialLTV property, as well as the price of the currency at time of quote request).</em>
+collateralBalance | The amount of cryptocurrency currently held in the account’s wallet.
+created | The UTC timestamp of the creation of the loan quote
+expires | The UTC timestamp at which the loan quote is no longer valid
+
+<aside class="notice">
+The referenced eligilibility determination must be unexpired, and status <em>ELIGIBLE</em>.
+</aside>
+
+### Response Codes
+HTTP Code | Status
+--------- | -------
+<code class="level200">201</code> | OK. Loan quote created successfully. |
+<code class="level400">400</code> | Bad Request. |
+<code class="level400">409</code> | Conflict. |
+<code class="level400">422</code> | Unprocessable Entity. |
+

@@ -1,0 +1,49 @@
+## Add Collateral
+
+<%= partial "includes/APIReference/Lending/Examples/add_collateral.tmpl.erb" %>
+
+This endpoint is for adding collateral to further secure the customer’s balance. The customer must have sufficient funds in their wallet, as this operation results in the transfer of cryptocurrency from the customer wallet into the secure vault wallet.
+
+<aside class="success">Encourage your customers to add collateral, for the following reasons: 1) We've found that the more the customer interacts with the product, the more likely they'll keep coming back. 2) Adding collateral results in a lower BTC balance in the user's wallet, causing the customer to want to replenish. 3) It provides added security against BTC price volatility, reduces the LTV and likelihood of liquidation.</aside>
+
+
+### HTTP Request
+
+<img src="images/post.png" alt="post" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans/<ID>/transactions`</api>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the loan for which to add collateral
+
+### Request Properties
+
+Property | Use | Description
+--------- | ------- | -----------
+action | required | The value of this property must be set to <em>Add Collateral</em>.
+description | required | A short summary message to provide reason for the transaction
+amount | required | The amount of currency to add.
+currency | required | The currency of the collateral to add.
+
+### Response Properties
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the newly created add collateral  transaction
+loanId | Unique identifier of the loan to which the transaction applies
+action | The action carried out |   ‘ADD_COLLATERAL’’
+description | A short informative message providing reason for the transaction
+amount | The amount added to collateral
+currencySymbol | The currency in which the amount is denominated. Must be ‘USD’.
+balanceUSD | The outstanding balance of the loan after the transaction, in US dollars
+collateralHeld | The amount of cryptocurrency being held in the collateral vault wallet
+created | The UTC timestamp at which the transaction was created
+
+### Response Codes
+HTTP Code | Status
+--------- | -------
+<code class="level200">201</code> | Created |
+<code class="level400">400</code> | Bad Request |
+<code class="level400">409</code> | Conflict |
+<code class="level400">422</code> | Unprocessable Entity |

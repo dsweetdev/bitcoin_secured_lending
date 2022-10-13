@@ -1,0 +1,46 @@
+## Get Loan Transaction History
+
+<%= partial "includes/APIReference/Lending/Examples/get_loan_transaction_history.tmpl.erb" %>
+
+Returns a list of all transactions associated with the loan, within a given timeframe, in descending order by date.
+
+<aside class="info">For auditing purposes & legal compliance, you must log ALL transactions associated with the loan</aside>
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https | //api.example.com/v1/lending/loans/<ID>/transactions?from=<value>&to=<value>`</api>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the loan for which to retrieve transaction history
+
+### Query Parameters
+
+Parameter | Use | Description
+--------- | ------- | -----------
+from | required | The start of the timeframe, in <a href="https | //www.epochconverter.com/">Unix seconds</a>.
+to | optional | The end of the timeframe, in <a href="https | //www.epochconverter.com/">Unix seconds</a>. Defaults to current time if omitted.
+
+### Response Properties
+<em>This API method returns a list of loan transaction objectss, sorted by date in descending order</em>
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the loan transaction
+loanId | Unique identifier of the loan to which the transaction pertains
+action | The type of action carried out by the transaction, one of |  ‘ORIGINATE’, ‘APPLY_INTEREST’, ‘MAKE_PAYMENT’, ‘ADD_COLLATERAL’, ‘LIQUIDATE_COLLATERAL’, or ‘CLOSE’
+description | A short informative message giving context to the transaction’s reason
+amount | The amount transacted (Note |  this field is unused with ‘ORIGINATE’ & ‘CLOSE’)
+currencySymbol | The short name of the currency to which amount applies (e.g. ‘BTC’ or ‘USD’)
+balanceUSD | The outstanding balance of the loan after the transaction, in US dollars
+collateralHeld | Yhe amount of cryptocurrency being held in the collateral vault wallet
+created | The UTC timestamp at which the transaction was created
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+<code class="level400">400</code> | Bad Request
+<code class="level400">404</code> | Not Found

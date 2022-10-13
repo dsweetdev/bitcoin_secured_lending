@@ -1,0 +1,41 @@
+## Get Loans for an Account
+
+<%= partial "includes/APIReference/Lending/Examples/get_loans_for_an_account.tmpl.erb" %>
+
+Returns all loans, past and present, for a given account.
+
+<aside class="info">Only one loan may be open at any given time for each account.</aside>
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans?accountId=<value>`</api>
+<br/>
+
+### Query Parameters
+
+Parameter | Use | Description
+--------- | ------- | -----------
+accountId | required | The id of the customer account for which to retrieve loans |
+
+### Response Properties
+<em>This API method returns a list of loan objects</em>
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the loan
+accountId | Unique id of the customer’s account associated with the loan
+quoteId | Unique id of the quote which determined the collateral amount for the loan
+balanceUSD | The outstanding (unpaid) balance of the loan
+collateralHeld | The amount of cryptocurrency being held in the collateral vault wallet
+collateralSymbol | The short name (symbol) of the cryptocurrency
+apr | The annual percentage rate charged by the partner to the customer
+currentLTV | The loan-to-value at time of origination of the loan
+currentCollateralPrice | The market price of the collateral currency at origination
+status | The state of the loan, one of ‘PENDING’, ‘OPEN’, ‘CLOSING’, ‘CLOSED’, or ‘FAILED’
+created | The UTC timestamp at which the loan was created
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+<code class="level400">404</code> | Not Found

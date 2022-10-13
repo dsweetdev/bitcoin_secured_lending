@@ -1,0 +1,47 @@
+## Make Payment
+
+<%= partial "includes/APIReference/Lending/Examples/make_payment.tmpl.erb" %>
+
+This endpoint is for making payments to the customer’s outstanding balance.
+
+### HTTP Request
+
+<img src="images/post.png" alt="post" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans/<ID>/transactions`</api>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The id of the loan for which to make payment
+
+### Request Properties
+
+Property | Use | Description
+--------- | ------- | -----------
+action | required | A descriptor, the value of which must be set to <em>Payment</em>.
+description | required | A short summary message to provide reason for the transaction
+amount | required | The dollar amount of the loan payment.
+currency | required | The payment currency symbol. Must be <em>USD</em>.
+
+### Response Properties
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the newly created make payment transaction
+loanId | Unique identifier of the loan to which the transaction applies
+action | The action carried out: ‘MAKE PAYMENT’
+description | A short informative message providing reason for the transaction
+amount | The amount paid on the outstanding balance
+currencySymbol | The currency in which the amount is denominated. Must be ‘USD’.
+balanceUSD | The outstanding balance of the loan after the transaction, in US dollars
+collateralHeld | The amount of cryptocurrency being held in the collateral vault wallet
+created | The UTC timestamp at which the transaction was created
+
+### Response Codes
+HTTP Code | Status
+--------- | -------
+<code class="level200">201</code> | Created. The loan transaction has been sucessfully created. |
+<code class="level400">400</code> | Bad Request. |
+<code class="level400">409</code> | Conflict. |
+<code class="level400">422</code> | Unprocessable Entity. |
+

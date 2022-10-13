@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/Lending/Examples/_get_eligibilities_for_an_account-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "eligibilities",
+    :parameters => [ ["accountId", 1] ],    
+    :response_body => @response_body
+  }
+%>
+

@@ -1,0 +1,37 @@
+## Get Transaction Status by Handler
+
+<%= partial "includes/APIReference/Lending/Examples/get_transaction_status_by_handler.tmpl.erb" %>
+
+Retrieves status of a transaction creation request.
+
+<aside class="success">Pro Tip: For best results, poll this API no more frequently than every 1000ms.</aside>
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans/<ID>/transactions/status?handlerId=<value>`</api>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the loan for which to retrieve transaction status	
+
+### Query Parameters
+
+Parameter | Use | Description
+--------- | ------- | -----------
+handlerId | required | The identifier from the results of the transaction creation request
+
+### Response Properties
+
+Property | Description | Notes
+--------- | ------- | -------
+status | The status of the collateral transaction request | One of: <em>PENDING</em>, <em>POSTED</em>, or <em>FAILED</em>
+reason | Detailed explanation for the status | Set only when status is not <em>POSTED</em>
+transaction | The newly created object | Set only when status is <em>POSTED</em>
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+<code class="level400">404</code> | Not Found

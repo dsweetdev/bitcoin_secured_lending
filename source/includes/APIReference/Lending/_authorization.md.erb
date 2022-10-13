@@ -1,0 +1,25 @@
+## Authorization
+
+<img src="images/oauth-2-sm.png" class="oauth2">
+  <style>
+  .oauth2 {
+    float:left;
+  }
+  </style>
+</img>
+<span>We use OAuth2 for authorization to our API. [OAuth2](http://oauth.net/2/) is a protocol designed to let third-party applications perform actions on behalf of an end user. There are several libraries available that implement the protocol, and a good list can be found at the [OAuth2](http://oauth.net/2/) home page. Through the use of OAuth2, you'll go through the process of obtaining a token and then you'll use that token in every request made to the API to verify your identity.</span>
+
+### Obtaining a Token
+
+Before you can make any request of the API, you must first make an authorization request. Once authorized, you will be given an access token that may be used for all subsequent requests.
+This will require an OAuth client ID and an OAuth client secret. Contact your partner success manager to obtain these application credentials. The _**OAuth client secret should never be shared**_.
+
+## Base URL
+
+All URLs referenced in the documentation have the following base:
+
+<code class="standout">https://api.example.com/v1/lending</code>
+
+## Throttling
+
+Calls are limited to a maximum of 300 within any 5 minute time window (subject to change). Rate is calculated on a per-connection basis (per access token). If you exceed the current rate limit, you will receive a <code class="standout">429 'Too many requests'</code> response from our API. You will continue to receive a 429 response until you're out of the violation time window.

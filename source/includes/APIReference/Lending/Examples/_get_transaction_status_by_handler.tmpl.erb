@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/Lending/Examples/_get_transaction_status_by_handler-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "loans/1/transactions/status",
+    :parameters => [ ["handlerId", "646be5395c4f4e4992ed25319e7a0e00"] ],    
+    :response_body => @response_body
+  }
+%>
+

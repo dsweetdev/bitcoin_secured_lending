@@ -1,0 +1,11 @@
+<% @response_body = File.read("source/includes/APIReference/Loans/Examples/_get_loan_by_id-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "quotes",
+    :description => "Retrieve the loan with a given id.",
+    :parameters => [ ["id", "RTp+D8D8X0+7aKTHtAibCQ"] ],    
+    :response_body => @response_body
+  }
+%>
+

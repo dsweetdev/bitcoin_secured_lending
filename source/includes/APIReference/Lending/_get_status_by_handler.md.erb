@@ -1,0 +1,31 @@
+## Get Status By Handler
+
+<%= partial "includes/APIReference/Lending/Examples/get_status_by_handler.tmpl.erb" %>
+
+Retrieves status of a newly created loan
+
+<aside class="success">Pro Tip: For best results, poll this API no more frequently than every 1000ms.</aside>
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans/status?handlerId=<value>`</api>
+
+### Query Parameters
+
+Parameter | Use | Description
+--------- | ------- | -----------
+handlerId | required | The identifier from the results of the loan creation request
+
+### Response Properties
+
+Property | Description | Notes
+--------- | ------- | -------
+status | The status of the loan creation request | One of: <em>PENDING</em>, <em>OPEN</em>, <em>CLOSING</em>, <em>CLOSED</em>, or <em>FAILED</em>
+reason | Detailed explanation for the status | Set only when status is not <em>OPEN</em> or <em>CLOSED</em>
+<em>all others</em> | Properties of the newly created loan | Set only when status is <em>OPEN</em> or <em>CLOSED</em>
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+<code class="level400">404</code> | Not Found

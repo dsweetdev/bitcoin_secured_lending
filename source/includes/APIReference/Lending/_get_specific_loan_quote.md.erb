@@ -1,0 +1,35 @@
+## Get a Specific Loan Quote
+
+<%= partial "includes/APIReference/Lending/Examples/get_specific_loan_quote.tmpl.erb" %>
+
+Returns a previously generated loan quote, given its unique id.
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https://api.example.com/v1/lending/quotes/<ID>`</api>
+<br/>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The id of the loan quote to retrieve
+
+### Response Properties
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the loan quote
+accountId | Unique id of the customer’s account associated with the loan quote
+eligibilityId | Unique id of the eligibility determination used to generate the quote
+borrowUSD | The requested loan amount, in US dollars
+minCollateral | The minimum amount of cryptocurrency than must be locked as collateral to secure the loan. (Note: this value is derived from the eligibility determination’s MaxInitialLTV property, as well as the price of the currency at time of quote request).
+collateralBalance | The amount of cryptocurrency currently held in the account’s wallet.
+created | The UTC timestamp of the creation of the loan quote
+expires | The UTC timestamp at which the loan quote is no longer valid
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+<code class="level400">404</code> | Not Found

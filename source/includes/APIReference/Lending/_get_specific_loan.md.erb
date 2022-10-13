@@ -1,0 +1,38 @@
+## Get a Specific Loan
+
+<%= partial "includes/APIReference/Lending/Examples/get_specific_loan.tmpl.erb" %>
+
+Returns a loan, given its unique id.
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans/<ID>`</api>
+<br/>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The id of the loan to retrieve
+
+### Response Properties
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the loan
+accountId | Unique id of the customer’s account associated with the loan
+quoteId | Unique id of the quote which determined the collateral amount for the loan
+balanceUSD | The outstanding (unpaid) balance of the loan
+collateralHeld | The amount of cryptocurrency being held in the collateral vault wallet
+collateralSymbol | The short name (symbol) of the cryptocurrency
+apr | The annual percentage rate charged by the partner to the customer
+currentLTV | The loan-to-value at time of origination of the loan
+currentCollateralPrice | The market price of the collateral currency at origination
+status | The state of the loan, one of ‘PENDING’, ‘OPEN’, ‘CLOSING’, ‘CLOSED’, or ‘FAILED’
+created | The UTC timestamp at which the loan was created
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+<code class="level400">404</code> | Not Found

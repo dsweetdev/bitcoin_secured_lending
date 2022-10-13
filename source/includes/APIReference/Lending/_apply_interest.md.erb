@@ -1,0 +1,47 @@
+## Apply Interest
+
+<%= partial "includes/APIReference/Lending/Examples/apply_interest.tmpl.erb" %>
+
+This endpoint is for adding the interest amount to the outstanding balance of the loan, monthly.
+
+### HTTP Request
+
+<img src="images/post.png" alt="post" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans/<ID>/transactions`</api>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The id of the loan for which to make payment
+
+### Request Properties
+
+Property | Use | Description
+--------- | ------- | -----------
+action | required | A descriptor, the value of which must be set to <em>Apply Interest</em>.
+description | required | A short summary message to provide reason for the transaction
+amount | required | The dollar amount of the interest to add to the balance.
+currency | required | The currency symbol. Must be <em>USD</em>.
+
+### Response Properties
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the newly created apply interest  transaction
+loanId | Unique identifier of the loan to which the transaction applies
+action | The action carried out |   ‘APPLY_INTEREST’
+description | A short informative message providing reason for the transaction
+amount | The amount added to the outstanding balance
+currencySymbol | The currency in which the amount is denominated. Must be ‘USD’.
+balanceUSD | The outstanding balance of the loan after the transaction, in US dollars
+collateralHeld | The amount of cryptocurrency being held in the collateral vault wallet
+created | The UTC timestamp at which the transaction was created
+
+### Response Codes
+HTTP Code | Status
+--------- | -------
+<code class="level200">201</code> | Created |
+<code class="level400">400</code> | Bad Request |
+<code class="level400">409</code> | Conflict |
+<code class="level400">422</code> | Unprocessable Entity |
+

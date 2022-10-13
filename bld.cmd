@@ -1,0 +1,1 @@
+docker run --rm --name slate -v C:/Users/dwill/source/repos/bitcoin_secured_lending/build:/srv/slate/build -v C:/Users/dwill/source/repos/bitcoin_secured_lending/source:/srv/slate/source slatedocs/slate build

@@ -1,0 +1,38 @@
+## Close Loan
+
+<%= partial "includes/APIReference/Lending/Examples/close_loan.tmpl.erb" %>
+
+Updates the status of the loan to ‘CLOSED’.
+
+<aside class="warning">
+In order to close, the loan must be paid in full, else the call will fail with HTTP <code>403</code> Forbidden. 
+</aside>
+
+### HTTP Request
+
+<img src="images/patch.png" alt="patch" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans/<ID>`</api>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the loan to close	
+
+### Request Properties
+
+Property | Use | Description
+--------- | ------- | -----------
+status | required | The value of this property must be set to <em>CLOSE</em>.
+
+### Response
+
+No Content
+
+### Response Codes
+HTTP Code | Status
+--------- | -------
+<code class="level200">204</code> | No Content. |
+<code class="level400">400</code> | Bad Request. |
+<code class="level400">403</code> | Forbidden. The loan is not in a state to permit closure. |
+<code class="level400">422</code> | Unprocessable Entity. |
+

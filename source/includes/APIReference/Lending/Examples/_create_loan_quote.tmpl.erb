@@ -1,0 +1,10 @@
+<% @request_body = File.read("source/includes/APIReference/Lending/Examples/_create_loan_quote-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/Lending/Examples/_create_loan_quote-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/post.md.erb",
+  :locals => {
+    :endpoint => "quotes",
+    :request_body => @request_body,
+    :response_body => @response_body
+  }
+%>

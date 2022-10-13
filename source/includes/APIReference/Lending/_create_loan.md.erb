@@ -1,0 +1,52 @@
+## Create Loan
+
+<%= partial "includes/APIReference/Lending/Examples/create_loan.tmpl.erb" %>
+
+Creates a loan from the referenced quote, for a given account.
+
+<aside class="info">Before proceeding with loan creation, this method ensures that all required documents have been agreed upon by the
+end customer and have been uploaded to the archival endpoint. In absence of the above, it will return HTTP 403 Forbidden.</aside>
+
+<aside class="info">Make sure the reference quote is unexpired. If expired, a new quote will need to be generated, and this method called again before the loan can be created.</aside>
+
+<aside class="warning">UPON SUCCESSFUL LOAN CREATION, YOU MUST TRANSFER FUNDS INTO THE SETTLEMENT ACCOUNT TO HONOR THE ORGINATION FEE, IN THE AMOUNT SPECIFIED WITHIN THE ELIGIBILITY DETERMINATION OF THE CUSTOMER ACCOUNT (partnerFee property)</aside>
+
+### HTTP Request
+
+<img src="images/post.png" alt="post" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans`</api>
+
+### Request Properties
+
+Property | Use | Description
+--------- | ------- | -----------
+accountId | required | Id of the customer account for which to create the loan.
+quoteId | required | Id of the loan quote.
+borrowUSD | required | The cash amount to be borrowed, in USD.
+collateralToHold | required | The amount of collateral to be secured against the loan.
+collateralCurrency | required | The currency of the collateral.
+
+### Response Properties
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the loan
+accountId | Unique id of the customer’s account associated with the loan
+quoteId | Unique id of the quote which determined the collateral amount for the loan
+balanceUSD | The outstanding (unpaid) balance of the loan
+collateralHeld | The amount of cryptocurrency being held in the collateral vault wallet
+collateralSymbol | The short name (symbol) of the cryptocurrency
+apr | The annual percentage rate charged by the partner to the customer
+currentLTV | The loan-to-value at time of origination of the loan
+currentCollateralPrice | The market price of the collateral currency at origination
+status | The state of the loan, one of ‘PENDING’, ‘OPEN’, ‘CLOSING’, ‘CLOSED’, or ‘FAILED’
+created | The UTC timestamp at which the loan was created
+
+### Response Codes
+HTTP Code | Status
+--------- | -------
+<code class="level200">201</code> | Created. |
+<code class="level400">400</code> | Bad Request. |
+<code class="level400">403</code> | Forbidden. |
+<code class="level400">409</code> | Conflict. |
+<code class="level400">422</code> | Unprocessable Entity. |
+

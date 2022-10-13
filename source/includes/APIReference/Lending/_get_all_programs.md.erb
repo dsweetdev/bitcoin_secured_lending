@@ -1,0 +1,34 @@
+## Get All Programs
+
+<%= partial "includes/APIReference/Lending/Examples/get_all_programs.tmpl.erb" %>
+
+Returns all lending programs, including those that are well established, upcoming, and no longer available.
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https://api.example.com/v1/lending/programs`</api>
+<br/>
+
+### Response Properties
+<em>This API method returns a list of program objects</em>
+
+Property | Description
+--------- | ------- 
+id | Unique identifier of the program
+name | Friendly descriptive identifier of the program
+description | Short informative summary to provide context
+type | Either ‘PERSONAL’ or ‘BUSINESS’. Additional types may be added
+collateralSymbol | The short name (symbol) of the cryptocurrency
+originationFee | The startup cost passed on to the partners’ end customer
+annualFee | The fee passed on to the partners’ end customer, charged yearly
+status | The use readiness state, one of ‘LIVE’, ‘PREVIEW, or ‘CLOSED’
+created | The UTC timestamp of the creation of the loan
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+
+
+
+

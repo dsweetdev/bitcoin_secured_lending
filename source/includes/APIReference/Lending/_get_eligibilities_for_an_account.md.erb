@@ -1,0 +1,40 @@
+## Get Eligibilities for an Account
+
+<%= partial "includes/APIReference/Lending/Examples/get_eligibilities_for_an_account.tmpl.erb" %>
+
+Gets lending program eligibility determinations and conditions for a given customer account.
+
+### HTTP Request
+
+<img src="images/get.png" alt="get" class="http_verb"/> <api>`https://api.example.com/v1/lending/eligibilities?accountId=<value>`</api>
+<br/>
+
+### Query Parameters
+
+Parameter | Use | Description
+--------- | ------- | -----------
+accountId | required | The id of the customer account for which to retrieve lending program eligibility |
+
+### Response Properties
+<em>This API method returns a list of eligibility objects</em>
+
+Property | Description
+--------- | ------- 
+id | Unique identifier of the eligibility determination
+accountId | Unique id of the customer’s account associated with the eligibilities
+programId | Unique id of the lending program to which the eligibility applies
+status | The determination, one of ‘ELIGIBLE’, ‘INELIGIBLE’, or ‘CONTESTED’
+collateralSymbol | The short name (symbol) of the cryptocurrency to be used as collateral
+minOfferUSD | The smallest possible loan allowed, denominated in US dollars
+maxOfferUSD | The largest possible loan allowed, denominated in US dollars
+maxAPR | The maximum APR the partner is allowed to charge the customer
+maxInitialLTV | The Loan-to-value at origination. Value of collateral must be greater than or equal to the borrowed amount divided by this number (expressed as a percentage)
+partnerFee | The US dollar amount, expressed as a percentage of the borrowed amount, Which must be paid to within 24 hours of loan origination
+created | The UTC timestamp of the creation of the loan
+expires | The UTC timestamp at which the eligibility determination is no longer valid
+
+### Response Codes
+HTTP Code | Status
+--------- | ------- 
+<code class="level200">200</code> | OK
+<code class="level400">404</code> | Not Found

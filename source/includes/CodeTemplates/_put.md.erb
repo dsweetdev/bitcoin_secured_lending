@@ -1,0 +1,330 @@
+<% if defined? base_url -%>
+  <% @base_url = base_url -%>
+<% else -%>
+  <% @base_url = "https://api.example.com/v1/" -%>
+<% end -%>
+
+<% if defined? headers -%>
+  <% @headers = headers -%>
+<% else -%>
+  <% @headers = [ [ "Authorization", "Bearer <TOKEN>" ], [ "Content-Type", "application/json" ] ] -%>
+<% end -%>
+
+ > **Example**: <%= description %>
+ 
+<% if defined?(request_body) -%>
+ > Request Body
+
+```json
+<%= request_body -%>
+
+```
+<% end -%>
+
+ > Request
+
+```shell
+curl -X PUT \
+  <%= @base_url %><%= endpoint %> \
+  <% @headers.each do |header| -%>
+  <%= "-H '#{header[0]}: #{header[1]}' \\" %>
+  <% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= "-H '#{header[0]}: #{header[1]}' \\" %>
+  <% end -%>
+<% end -%>  
+  -d '<REQUEST BODY>'
+```
+
+```csharp
+var client = new RestClient("<%= @base_url %><%= endpoint %>");
+var request = new RestRequest(Method.PUT);
+<% @headers.each do |header| -%>
+<%= "request.AddHeader(\"#{header[0]}\", \"#{header[1]}\");" %>
+<% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+<%= "request.AddHeader(\"#{header[0]}\", \"#{header[1]}\");" %>
+  <% end -%>
+<% end -%> 
+IRestResponse response = client.Execute(request);
+```
+
+```vb
+Dim client = New RestClient("<%= @base_url %><%= endpoint %>")
+Dim request = New RestRequest(Method.PUT)
+<% @headers.each do |header| -%>
+<%= "request.AddHeader(\"#{header[0]}\", \"#{header[1]}\")" %>
+<% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+<%= "request.AddHeader(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% end -%>
+Dim response As IRestResponse = client.Execute(request)
+```
+
+```java
+OkHttpClient client = new OkHttpClient();
+
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "<REQUEST BODY>");
+Request request = new Request.Builder()
+  .url("<%= @base_url %><%= endpoint %>")
+  .put(body)
+  <% @headers.each do |header| -%>
+  <%= ".addHeader(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= ".addHeader(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% end -%>   
+  .build();
+
+Response response = client.newCall(request).execute();
+```
+
+```javascript--browser
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  <%= "\"url\": \"#{@full_url}\"," %>
+  "method": "PUT",
+  "headers": {
+  <% @headers.each do |header| -%>
+    <%= "\"#{header[0]}\", \"#{header[1]}\"," %>
+  <% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+    <%= "\"#{header[0]}\", \"#{header[1]}\"," %>
+  <% end -%>
+<% end -%>  
+  },
+  "processData": false,
+  "data": "<REQUEST BODY>"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+```javascript--node
+var request = require("request");
+
+var options = { method: 'PUT',
+  url: '<%= @base_url %><%= endpoint %>',
+  headers: 
+  { 
+  <% @headers.each do |header| -%>
+     <%= "'#{header[0]}': '#{header[1]}'," %>
+  <% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+     <%= "'#{header[0]}': '#{header[1]}'," %>
+  <% end -%>
+<% end -%>  
+  },
+  body: '<REQUEST BODY>',
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```php
+<?php
+
+$request = new HttpRequest();
+$request->setUrl('<%= @base_url %><%= endpoint %>');
+$request->setMethod(HTTP_METH_PUT);
+
+$request->setHeaders(array(
+<% @headers.each do |header| -%>
+  <%= "'#{header[0]}' => '#{header[1]}'," %>
+<% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= "'#{header[0]}' => '#{header[1]}'," %>
+  <% end -%>
+<% end -%> 
+));
+
+$request->setBody('<REQUEST BODY>');
+
+try {
+  $response = $request->send();
+
+  echo $response->getBody();
+} catch (HttpException $ex) {
+  echo $ex;
+}
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+
+url = URI("<%= @base_url %><%= endpoint %>")
+
+http = Net::HTTP.new(url.host, url.port)
+
+request = Net::HTTP::Post.new(url)
+<% @headers.each do |header| -%>
+<%= "request[\"#{header[0]}\"] = '#{header[1]}'," %>
+<% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+<%= "request[\"#{header[0]}\"] = '#{header[1]}'," %>
+  <% end -%>
+<% end -%>
+request.body = "<REQUEST BODY>"
+
+response = http.request(request)
+puts response.read_body
+```
+
+```python
+import requests
+
+url = "<%= @base_url %><%= endpoint %>"
+
+payload = "<REQUEST BODY>"
+headers = {
+  <% @headers.each do |header| -%>
+    <%= "'#{header[0]}': '#{header[1]}'," %>
+  <% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+    <%= "'#{header[0]}': '#{header[1]}'," %>
+  <% end -%>
+<% end -%>  
+    }
+
+response = requests.request("PUT", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "net/http"
+  "io/ioutil"
+)
+
+func main() {
+
+  url := "<%= @base_url %><%= endpoint %>"
+
+  payload := strings.NewReader("<REQUEST BODY>")
+
+  req, _ := http.NewRequest("PUT", url, payload)
+
+  <% @headers.each do |header| -%>
+  <%= "req.Header.Add(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= "req.Header.Add(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% end -%>  
+
+  res, _ := http.DefaultClient.Do(req)
+
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
+
+  fmt.Println(res)
+  fmt.Println(string(body))
+
+}
+```
+
+```swift
+import Foundation
+
+let headers = [
+<% if defined? extra_headers -%>
+  <% @headers.each do |header| -%>
+   <%= "\"#{header[0]}\": \"#{header[1]}\"," %>
+  <% end -%> 
+  <% extra_headers.each do |header| -%>
+   <%= "\"#{header[0]}\": \"#{header[1]}\"," %>
+  <% end -%>    
+<% else %>
+  <% @headers.each do |header| -%>
+   <%= "\"#{header[0]}\": \"#{header[1]}\"," %>
+  <% end -%> 
+<% end -%>  
+]
+let parameters = <REQUEST BODY> as [String : Any]
+
+let postData = JSONSerialization.data(withJSONObject: parameters, options: [])
+
+let request = NSMutableURLRequest(
+  url: NSURL(string: "http://api.example.com/v1/<%= endpoint %>")! as URL,
+  cachePolicy: .useProtocolCachePolicy,
+  timeoutInterval: 10.0)
+
+request.httpMethod = "PUT"
+request.allHTTPHeaderFields = headers
+request.httpBody = postData as Data
+
+let session = URLSession.shared
+let dataTask = session.dataTask(
+  with: request as URLRequest,
+  completionHandler: {
+    (data, response, error) -> Void in
+    if (error != nil) {
+      print(error)
+    } else {
+      let httpResponse = response as? HTTPURLResponse
+      print(httpResponse)
+    }
+  }
+)
+
+dataTask.resume()
+```
+
+```perl
+use REST::Client;
+ 
+my $client = REST::Client->new();
+
+<% @headers.each do |header| -%>
+<%= "$client->addHeader('#{header[0]}', '#{header[1]}');" %>
+<% end -%>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+<%= "$client->addHeader('#{header[0]}', '#{header[1]}');" %>
+  <% end -%>    
+<% end %>
+
+$req = '<REQUEST BODY>';
+
+$url="http://api.example.com/v1/<%= endpoint %>"; 
+
+$client->PUT($url, $req);
+print $client->responseContent();
+print $client->responseHeader('ResponseHeader');
+```
+<% if defined?(response_body) -%>
+> Response Format
+
+> <code class="level200">200 OK</code>
+
+```json
+<%= response_body %>
+
+```
+<% end %>

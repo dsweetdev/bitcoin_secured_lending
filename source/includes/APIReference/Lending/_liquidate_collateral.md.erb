@@ -1,0 +1,51 @@
+## Liquidate Collateral
+
+<%= partial "includes/APIReference/Lending/Examples/liquidate_collateral.tmpl.erb" %>
+
+This endpoint is to be used for liquidation of the customer's collateral.
+
+<aside class="info">As lienholder, you are legally authorized to sell off the customer’s collateral under certain conditions (e.g. non-payment or excessive LTV). See legal terms and conditions. Specific to the reason, you must first make multiple attempts to notify the customer and resolve the issue, documenting each occurrence. In the event of non-payment, for example, our recommendation is that you first notify the customer via email and SMS at least 3 times over the course of 72 hours, before proceeding with liquidation. The liquidation amount should be no more than is required for the partner to recover the lost payment, plus fees.</aside>
+
+<aside class="warning">A fee of 5% of the liquidated amount will automatically be deducted for all liquidation transactions</aside>
+
+### HTTP Request
+
+<img src="images/post.png" alt="post" class="http_verb"/> <api>`https://api.example.com/v1/lending/loans/<ID>/transactions`</api>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the loan for which to liquidate collateral	
+
+### Request Properties
+
+Property | Use | Description
+--------- | ------- | -----------
+action | required | The value of this property must be set to <em>Liquidate</em>.
+description | required | A short summary message to provide reason for the transaction
+amount | required | The amount of currency to sell.
+currency | required | The currency of the collateral to sell.
+
+### Response Properties
+
+Property | Description
+--------- | -----------
+id | Unique identifier of the newly created liquidate collateral  transaction
+loanId | Unique identifier of the loan to which the transaction applies
+action | The action carried out |   ‘LIQUIDATE_COLLATERAL’’
+description | A short informative message providing reason for the transaction
+amount | The amount to liquidate
+currencySymbol | The currency in which the amount is denominated. Can be either ‘USD’ or ‘BTC’
+balanceUSD | The outstanding balance of the loan after the transaction, in US dollars
+collateralHeld | The amount of cryptocurrency being held in the collateral vault wallet.
+created | The UTC timestamp at which the transaction was created
+
+### Response Codes
+HTTP Code | Status
+--------- | -------
+<code class="level200">201</code> | Created |
+<code class="level400">400</code> | Bad Request |
+<code class="level400">403</code> | Forbidden |
+<code class="level400">409</code> | Conflict |
+<code class="level400">422</code> | Unprocessable Entity |
