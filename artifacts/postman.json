@@ -1,0 +1,541 @@
+{
+	"info": {
+		"_postman_id": "e3c38dff-3f9f-414a-9410-05c661800f43",
+		"name": "Bitcoin Lending API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Lending Programs",
+			"item": [
+				{
+					"name": "Get All Programs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/programs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"programs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Specific Program",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/programs/:programId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"programs",
+								":programId"
+							],
+							"variable": [
+								{
+									"key": "programId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer Eligibilities",
+			"item": [
+				{
+					"name": "Get Eligibilities for an Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/eligibilities?accountId=3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"eligibilities"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loan Quotes",
+			"item": [
+				{
+					"name": "Create a Loan Quote",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": 3,\r\n    \"eligibilityId\": 1,\r\n    \"borrowUSD\": 1000\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/quotes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quotes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Specific Loan Quote",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/quotes/:quoteId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quotes",
+								":quoteId"
+							],
+							"variable": [
+								{
+									"key": "quoteId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loan Quotes for an Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/quotes?accountId=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quotes"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loans",
+			"item": [
+				{
+					"name": "Create a Loan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": 3,\r\n    \"quoteId\": 1,\r\n    \"borrowUSD\": 1000.00,\r\n    \"collateralToHold\": 0.05319149,\r\n    \"collateral\": \"BTC\",\r\n    \"APR\": 7.5\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Specific Loan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans/:loanId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								":loanId"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loans for an Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans?accountId=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loan Transaction History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans/:loanId/transactions?from=1646168541",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								":loanId",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "1646168541"
+								}
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Loan",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"action\": \"afds\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans/:loanId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								":loanId"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loan Transactions",
+			"item": [
+				{
+					"name": "Apply Interest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Action\": \"APPLY_INTEREST\",\r\n    \"Description\": \"Adding interest accrued for May\",\r\n    \"Amount\": 6.25,\r\n    \"Currency\": \"USD\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans/:loanId/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								":loanId",
+								"transactions"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Make Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Action\": \"MAKE_PAYMENT\",\r\n    \"Description\": \"Payment for May\",\r\n    \"Amount\": 100,\r\n    \"Currency\": \"USD\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans/:loanId/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								":loanId",
+								"transactions"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Collateral",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Action\": \"ADD_COLLATERAL\",\r\n    \"Description\": \"Topping off collateral\",\r\n    \"Amount\": 0.013697250000000001,\r\n    \"Currency\": \"BTC\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans/:loanId/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								":loanId",
+								"transactions"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Liquidate Collateral",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Action\": \"LIQUIDATE_COLLATERAL\",\r\n    \"Description\": \"Customer missed payment\",\r\n    \"Amount\": 0.01,\r\n    \"Currency\": \"BTC\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans/:loanId/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								":loanId",
+								"transactions"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Helpers",
+			"item": [
+				{
+					"name": "Reset Database",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/helpers/resetdb",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"helpers",
+								"resetdb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						]
+					},
+					"response": []
+				},
+				{
+					"name": "Get Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/helpers/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"helpers",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Specific Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/helpers/accounts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"helpers",
+								"accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "7072"
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://api.example.com/v1/lending"
+		}
+	]
+}
