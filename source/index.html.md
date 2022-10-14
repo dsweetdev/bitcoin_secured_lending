@@ -74,7 +74,7 @@ This API platform proof-of-concept (PoC) enables banking integration partners to
 </div>
 
 # _API Design_
-The [API Design document](file:artifacts/Bitcoin-Secured-Lending-API-Design.pdf), complete with market analysis and product research is available for download.
+The <a href="https://github.com/dsweetdev/dsweetdev.github.io/raw/main/btc-lending/artifacts/Bitcoin-Secured-Lending-API-Design.pdf">API Design document</a>, complete with market analysis and product research is available for download.
 
 <br/><br/>
 
