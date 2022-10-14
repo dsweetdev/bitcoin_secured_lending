@@ -70,7 +70,7 @@ This API platform proof-of-concept (PoC) enables banking integration partners to
 # _Partner Integration Guide_
 <div>
     <iframe class="guide-iframe" src="artifacts/Bitcoin-Secured-Lending-Integration-Guide.pdf"  title="Bitcoin-Secured Lending Integration Guide" style="border:none;width:54%;height:700px;padding-left:28px"></iframe>
-    <div class="guide-mobile-iframe" style="display:none;padding-left:28px">The <a href="file:artifacts/Bitcoin-Secured-Lending-Integration-Guide.pdf">Partner Integration Guide</a> is available for download.</div>
+    <div class="guide-mobile-iframe" style="display:none;padding-left:28px">The <a href="https://github.com/dsweetdev/dsweetdev.github.io/raw/main/btc-lending/artifacts/Bitcoin-Secured-Lending-Integration-Guide.pdf">Partner Integration Guide</a> is available for download.</div>
 </div>
 
 # _API Design_
